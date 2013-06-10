@@ -74,7 +74,12 @@ if MC_flag==True:
     process.photonID = cms.EDFilter("PhotonRefSelector",
                                     src = cms.InputTag("ZuugSelection:ZuugSelPhotons"),
                                     cut = cms.string(
-        "(ecalRecHitSumEtConeDR03 < (0.012*pt + 4))"
+        "((r9>0.9) || (ecalRecHitSumEtConeDR03 < (0.012*pt + 4)))"
+        "&& ((r9>0.9) || (hcalTowerSumEtConeDR03 < (0.005*pt + 4 )))"
+        "&& ((r9>0.9) || (trkSumPtHollowConeDR03 < (0.002*pt + 4)))"
+        "&& ((r9<0.9) || (ecalRecHitSumEtConeDR03 < (0.012*pt + 50)))"
+        "&& ((r9<0.9) || (hcalTowerSumEtConeDR03 < (0.005*pt + 50 )))"
+        "&& ((r9<0.9) || (trkSumPtHollowConeDR03 < (0.002*pt + 50)))"
         " && (hcalTowerSumEtConeDR03 < (0.005*pt + 4 ))"
         " && (trkSumPtHollowConeDR03 < (0.002*pt + 4))"
         " && (hadronicOverEm<0.05)"
@@ -85,9 +90,12 @@ else:
     process.photonID = cms.EDFilter("PhotonRefSelector",
                                     src = cms.InputTag("ZuugSelection:ZuugSelPhotons"),
                                     cut = cms.string(
-        "(ecalRecHitSumEtConeDR03 < (0.012*pt + 4))"
-        " && (hcalTowerSumEtConeDR03 < (0.005*pt + 4 ))"
-        " && (trkSumPtHollowConeDR03 < (0.002*pt + 4))"
+        "((r9>0.9) || (ecalRecHitSumEtConeDR03 < (0.012*pt + 4)))"
+        "&& ((r9>0.9) || (hcalTowerSumEtConeDR03 < (0.005*pt + 4 )))"
+        "&& ((r9>0.9) || (trkSumPtHollowConeDR03 < (0.002*pt + 4)))"
+        "&& ((r9<0.9) || (ecalRecHitSumEtConeDR03 < (0.012*pt + 50)))"
+        "&& ((r9<0.9) || (hcalTowerSumEtConeDR03 < (0.005*pt + 50 )))"
+        "&& ((r9<0.9) || (trkSumPtHollowConeDR03 < (0.002*pt + 50)))"
         " && (hadronicOverEm<0.05)"
         " && (abs(superCluster.eta)>1.4442 || sigmaIetaIeta<0.011) && (abs(superCluster.eta)<1.566 || sigmaIetaIeta<0.030)"
         )
