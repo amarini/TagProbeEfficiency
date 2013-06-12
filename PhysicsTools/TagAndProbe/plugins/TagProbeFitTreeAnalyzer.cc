@@ -46,6 +46,7 @@ TagProbeFitTreeAnalyzer::TagProbeFitTreeAnalyzer(const edm::ParameterSet& pset):
 
   if (pset.existsAs<std::string>("WeightVariable")) {
     fitter.setWeightVar(pset.getParameter<std::string>("WeightVariable"));
+    std::cout << "USING WEIGHTS" << std::endl;
   }
   const ParameterSet variables = pset.getParameter<ParameterSet>("Variables");
   vector<string> variableNames = variables.getParameterNamesForType<vector<string> >();

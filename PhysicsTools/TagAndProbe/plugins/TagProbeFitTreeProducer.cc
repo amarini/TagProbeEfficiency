@@ -173,8 +173,9 @@ TagProbeFitTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup
             reco::GenParticleRef mtag = (*tagMatches)[it->tag], mprobe = (*probeMatches)[it->probe];
             mcTrue = checkMother(mtag) && checkMother(mprobe);
             if (mcTrue) {
-                mcMass = (mtag->p4() + mprobe->p4()).mass();
-                if (mcFiller_.get()) mcFiller_->fill(reco::CandidateBaseRef(mprobe));
+	      //	      mcMass = (mtag->p4()).mass(); // THIS IS FOR MUMUGAMMA
+	      mcMass = (mtag->p4() + mprobe->p4()).mass();
+	      if (mcFiller_.get()) mcFiller_->fill(reco::CandidateBaseRef(mprobe));
             }
         }
         // fill in the variables for this t+p pair

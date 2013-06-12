@@ -216,7 +216,7 @@ bool ZuugSelFilter::filter(edm::Event &event,
   event.put(outColMuon,"ZuugSelMuons");
   event.put(outColPhoton,"ZuugSelPhotons");
 
-  if (globalpass) cout << "Found Zuug event " << event.id().run() << ":" << event.luminosityBlock() << ":" << event.id().event() << endl;
+  //  if (globalpass) cout << "Found Zuug event " << event.id().run() << ":" << event.luminosityBlock() << ":" << event.id().event() << endl;
   //  std::cout << globalpass << std::endl;
   return globalpass;
 
