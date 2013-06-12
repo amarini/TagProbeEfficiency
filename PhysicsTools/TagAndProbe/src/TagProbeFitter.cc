@@ -76,7 +76,7 @@ TagProbeFitter::TagProbeFitter(vector<string> inputFileNames, string inputDirect
 
   // make integration very precise
   RooAbsReal::defaultIntegratorConfig()->setEpsAbs(1e-13);
-  RooAbsReal::defaultIntegratorConfig()->setEpsRel(1e-13);
+  RooAbsReal::defaultIntegratorConfig()->setEpsRel(1e-4);
 }
 
 TagProbeFitter::~TagProbeFitter(){
@@ -230,6 +230,8 @@ string TagProbeFitter::calculateEfficiency(string dirName, vector<string> effCat
 
    //merge the bin categories to a MultiCategory for convenience
    RooMultiCategory allCats("allCats", "allCats", RooArgSet(binCategories, mappedCategories));
+//   allCats.Print();
+//   allCats.Print("v");
    data.addColumn(allCats);
   string effName;
   //setup the efficiency category
@@ -260,6 +262,8 @@ string TagProbeFitter::calculateEfficiency(string dirName, vector<string> effCat
   for(unsigned int i = 1; i<binToPDFmap.size(); i+=2){
     pdfCategory.map(binToPDFmap[i].c_str(), binToPDFmap[i+1].c_str());
   }
+//  pdfCategory.Print();
+//  pdfCategory.Print("v");
   data.addColumn( pdfCategory );
   
   //create the empty efficiency datasets from the binned variables
